@@ -1,27 +1,36 @@
-# Todo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+## Установка
 
-## Development server
+1. клонировать репозиторий
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```sh
+git clone git@github.com:denis82/todo-front.git
+```
 
-## Code scaffolding
+2. перейти в корень
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```sh
+cd todo-front/
+```
 
-## Build
+3. поставить все пакеты
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```sh
+npm install
+```
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. Стартануть
 
-## Running end-to-end tests
+```sh
+ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+> Note: Возможные проблемы, не соответсятвие ноды.
+> Потребуется версия не ниже v18.13.
 
-## Further help
+5. Если все прошло успешно должно открыться в браузере так.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```sh
+http://localhost:4200/task
+```

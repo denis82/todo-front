@@ -1,0 +1,127 @@
+<header class="contact-header">
+  <div class="d-flex align-items-center">
+    <div class="dropdown ms-3">
+      <a [routerLink]="['/task/create', ]" >
+        <button class="btn btn-sm btn-outline-secondary flex-shrink-0 d-lg-inline-block ">Новыая задача</button>
+      </a>
+    </div>
+    <div class="dropdown ms-3">
+        <button class="btn btn-sm btn-outline-secondary flex-shrink-0 d-lg-inline-block" (click)="taskFilter('')">Все задачи</button>
+    </div>
+    <div class="dropdown ms-3">
+        <button class="btn btn-sm btn-outline-secondary flex-shrink-0 d-lg-inline-block" (click)="taskFilter('1')">Открытые задачи</button>
+    </div>
+    <div class="dropdown ms-3">
+        <button class="btn btn-sm btn-outline-secondary flex-shrink-0 d-lg-inline-block" (click)="taskFilter('2')">Закрытые задача</button>
+    </div>
+  </div>
+
+  <div class="hk-sidebar-togglable"></div>
+</header>
+
+<table id="datable_1" class="table nowrap w-100 mb-5 dataTable no-footer" aria-describedby="datable_1_info" role="grid">
+  <thead>
+    <tr role="row">
+      <th class=" sorting_asc" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1"
+        aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 186.25px;">Заголовок задачи</th>
+      <th class="" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1"
+        aria-label="Email Address: activate to sort column ascending" style="width: 112.562px;">Дата выполнения задачи</th>
+      <th class="" tabindex="0" aria-controls="datable_1" rowspan="1" colspan="1"
+        aria-label="Phone: activate to sort column ascending" style="width: 111.203px;">Время выполнения задачи</th>
+        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 183.812px;">Статус задачи</th>
+        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 183.812px;">Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks | taskFilter:search" class="odd">
+
+      <td> <a href="#">{{ task.title }}</a></td>
+      <td class="text-truncate">{{ task.completionDate }}</td>
+      <td>{{ task.completionTime }}</td>
+      <td *ngIf="!task.flag; else elseBlock"><span class="badge badge-soft-danger my-1  me-2">Не выполнена</span></td>
+      <ng-template #elseBlock>
+        <td><span class="badge badge-soft-success my-1  me-2">Выполнена</span></td>
+      </ng-template>
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="d-flex">
+            <a routerLink="/task/{{task.id}}/edit" class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover" data-bs-toggle="tooltip"
+              data-placement="top" title="" data-bs-original-title="Edit" href="edit-contact.html">
+              <span class="icon">
+                <span class="feather-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-edit">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                </span>
+              </span>
+            </a>
+            <a class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover del-button" data-bs-toggle="tooltip"
+              data-placement="top" title="" data-bs-original-title="Delete"  (click)="deleteTask(task.id)">
+              <span class="icon"><span
+                  class="feather-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-trash">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg></span></span></a>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-icon btn-flush-dark btn-rounded flush-soft-hover dropdown-toggle no-caret"
+              aria-expanded="false" data-bs-toggle="dropdown"><span class="icon"><span class="feather-icon"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-more-vertical">
+                    <circle cx="12" cy="12" r="1"></circle>
+                    <circle cx="12" cy="5" r="1"></circle>
+                    <circle cx="12" cy="19" r="1"></circle>
+                  </svg></span></span></button>
+            <div class="dropdown-menu dropdown-menu-end">
+              <a class="dropdown-item" href="edit-contact.html"><span class="feather-icon dropdown-icon"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-edit">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg></span><span>Edit Contact</span></a>
+              <a class="dropdown-item" href="#"><span class="feather-icon dropdown-icon"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-trash-2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                  </svg></span><span>Delete</span></a>
+              <a class="dropdown-item" href="#"><span class="feather-icon dropdown-icon"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-copy">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg></span><span>Duplicate</span></a>
+              <div class="dropdown-divider"></div>
+              <h6 class="dropdown-header dropdown-header-bold">Change Labels</h6>
+              <a class="dropdown-item" href="#">Design</a>
+              <a class="dropdown-item" href="#"></a>
+              <a class="dropdown-item" href="#">Inventory</a>
+              <a class="dropdown-item" href="#">Human Resource</a>
+            </div>
+          </div>
+        </div>
+      </td>
+  </tbody>
+</table>
+
+<div *ngIf="errorDelete === '1'">
+  <div class="form-group">
+    Задача успешно удалена.
+  </div>
+</div>
+<div *ngIf="errorDelete === '0'">
+  <div class="form-group">
+    Пожалуй нет, перед удалением необходимо закрыть задачу.
+  </div>
+</div>

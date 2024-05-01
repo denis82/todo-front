@@ -1,0 +1,45 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xxl-9 col-lg-8">
+      <form [formGroup]="form" class="edit-post-form" (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <label class="form-label">Задача</label>
+          <input class="form-control" formControlName="title" value="Building an effective Dashboard User Interface Design" placeholder="Post Title">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Дата выполнения</label>
+          <input type="date" formControlName="completionDate" class="form-control" value="https://hencework.com/theme/jampack" placeholder="Post Title">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Время выполнения</label>
+          <input type="time" formControlName="completionTime" class="form-control" value="https://hencework.com/theme/jampack" placeholder="Post Title">
+        </div>
+        <div class="form-group">
+          <span class="form-check mb-0">
+            <input type="radio" class="form-check-input check-select" id="chk_sel_10" formControlName="flag" value="0" checked="checked">
+              <label class="form-check-label" for="chk_sel_10">Не выполнена</label>
+          </span>
+        </div>
+        <div class="form-group">
+          <span class="form-check mb-0">
+            <input type="radio" class="form-check-input check-select" formControlName="flag" value="1"  id="chk_sel_10" >
+              <label class="form-check-label" for="chk_sel_10">Выполнена</label>
+          </span>
+        </div>
+        <div *ngIf="success === true">
+          <div class="form-group">
+            done!
+          </div>
+        </div>
+        <div *ngIf="success === false">
+          <div class="form-group">
+            error!
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mb-3">Publish</button>
+      </form>
+    </div>
+    <a routerLink="/task">Вернуться в список</a>
+  </div>
+</div>

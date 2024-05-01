@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xxl-9 col-lg-8">
+      <form [formGroup]="form" class="edit-post-form" (ngSubmit)="submitForm()">
+        <div class="form-group">
+          <label class="form-label">Задача</label>
+          <input class="form-control" formControlName="title" value="Building an effective Dashboard User Interface Design" placeholder="Post Title">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Дата выполнения</label>
+          <input type="date" formControlName="completionDate" class="form-control" value="https://hencework.com/theme/jampack" placeholder="Post Title">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Время выполнения</label>
+          <input type="time" formControlName="completionTime" class="form-control" value="https://hencework.com/theme/jampack" placeholder="Post Title">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mb-3">Publish</button>
+      </form>
+    </div>
+  </div>
+</div>
